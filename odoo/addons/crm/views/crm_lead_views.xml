@@ -261,6 +261,26 @@
                         <field attrs="{'invisible': [('team_id', '=', False)]}"
                             name="lead_properties" nolabel="1" columns="2" hideKanbanOption="1"/>
                         <notebook>
+                        <page string="Thông tin tuyển sinh 2023" name="admission_notes">
+                                <group>
+
+                                    <group string="Thông tin xét tuyển" class="col-lg-12">
+                                        <div class="clearfix"></div>
+                                    
+                                        <group string="Nguyện vọng 1">
+                                            <field name="x_selected_faculty_v1" string="Ngành xét tuyển 1"/>
+                                        </group>
+
+                                        <group string="Nguyện vọng 2">
+                                            <field name="x_selected_faculty_v2" string="Ngành xét tuyển 2"/>
+                                        </group>
+                                    
+                                        <group string="Nguyện vọng 3">
+                                            <field name="x_selected_faculty_v3" string="Ngành xét tuyển 3"/>
+                                        </group>
+                                    </group>
+                                </group>
+                            </page>  
                             <page string="Internal Notes" name="internal_notes">
                                 <field name="description" placeholder="Add a description..." options="{'collaborative': true}" />
                             </page>

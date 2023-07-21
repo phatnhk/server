@@ -236,6 +236,22 @@ class Lead(models.Model):
     medium_id = fields.Many2one(ondelete='set null')
     source_id = fields.Many2one(ondelete='set null')
 
+    x_selected_faculty = fields.Selection(selection='_get_major_type', string="Ngành xét tuyển 1",tracking=True)
+    x_selected_faculty_2 = fields.Selection(selection='_get_major_type', string="Ngành xét tuyển 2",tracking=True)
+    x_selected_faculty_3 = fields.Selection(selection='_get_major_type', string="Ngành xét tuyển 3",tracking=True)
+    
+    x_selected_faculty_v1 = fields.Many2one('crm.major', string='Ngành xét tuyển 1')
+    x_selected_faculty_v2 = fields.Many2one('crm.major', string='Ngành xét tuyển 2')
+    x_selected_faculty_v3 = fields.Many2one('crm.major', string='Ngành xét tuyển 3')
+
+    def _get_major_type(self):
+        majors = self.env['crm.major'].sudo().search([]).read(['code','name'])
+        selection_vals = []
+        for major in majors:
+            selection_val = ('{}'.format(major['code']), major['name'])
+            selection_vals.append(selection_val)
+        return selection_vals
+    
     _sql_constraints = [
         ('check_probability', 'check(probability >= 0 and probability <= 100)', 'The probability of closing the deal should be between 0% and 100%!')
     ]
